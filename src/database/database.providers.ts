@@ -6,7 +6,8 @@ export const databaseProviders = [{
   useFactory: async (configService: ConfigService): Promise<typeof mongoose> => {
     const host = configService.get<string>('database.host');
     const port = configService.get<number>('database.port');
-    console.log('Hello')
-    return await mongoose.connect(`mongodb://${host}:${port}/myapp`)
-  }
+    const database_name = configService.get<string>('database.name')
+    return await mongoose.connect(`mongodb://${host}:${port}/${database_name}`)
+  },
+  inject: [ConfigService]
 }]

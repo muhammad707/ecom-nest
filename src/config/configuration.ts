@@ -3,6 +3,6 @@ export default () => ({
   database: {
     host: process.env.MONGODB_HOST,
     port: parseInt(process.env.MONGODB_PORT, 10) || 27017,
-    databse: process.env.DATABASE
+    name: process.env.DATABASE
   }
 });
