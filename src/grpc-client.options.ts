@@ -1,10 +1,13 @@
-import { Transport, ClientOptions } from '@nestjs/microservices';
 import { join } from 'path';
+import { Transport, ClientOptions } from '@nestjs/microservices';
 
+const protoPath = join(__dirname, 'modules', 'companies', 'companies.proto');
+console.log(protoPath);
 export const grpcClientOptions: ClientOptions = {
   transport: Transport.GRPC,
   options: {
-    package: 'companies',
-    protoPath: join(__dirname, 'modules', 'companies', 'companies.proto'),
+    url: '0.0.0.0:5000',
+    package: 'company',
+    protoPath: join(__dirname, './modules/companies/company.proto'),
   }
 }

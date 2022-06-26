@@ -1,7 +1,7 @@
 import { Document } from "mongoose";
 import { Prop, raw, Schema, SchemaFactory } from "@nestjs/mongoose";
 
-import { Adress } from "./address.schema";
+import { Address } from "./address.schema";
 import { HolderType, OrderType, Status } from "../enums";
 
 
@@ -64,7 +64,7 @@ export class Company {
   @Prop()
   legalAddress: string;
 
-  @Prop(raw(Adress))
+  @Prop(raw(Address))
   address: Record<string, any>;
 }
 
