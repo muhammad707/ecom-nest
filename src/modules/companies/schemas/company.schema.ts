@@ -1,7 +1,9 @@
 import { Document } from "mongoose";
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Prop, raw, Schema, SchemaFactory } from "@nestjs/mongoose";
 
+import { Adress } from "./address.schema";
 import { HolderType, OrderType, Status } from "../enums";
+
 
 export type CompanyDocument = Company & Document;
 
@@ -62,8 +64,8 @@ export class Company {
   @Prop()
   legalAddress: string;
 
-  @Prop()
-  addresses: Record<string, any>;
+  @Prop(raw(Adress))
+  address: Record<string, any>;
 }
 
 export const CompanySchema = SchemaFactory.createForClass(Company);
