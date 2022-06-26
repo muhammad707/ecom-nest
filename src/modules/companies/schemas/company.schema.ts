@@ -1,5 +1,7 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+
+import { HolderType, OrderType, Status } from "../enums";
 
 export type CompanyDocument = Company & Document;
 
@@ -7,6 +9,8 @@ export type CompanyDocument = Company & Document;
 export class Company {
 
   /* Status enum */
+  @Prop({ default: Status.PENDING })
+  status: Status;
 
   @Prop()
   name: string;
@@ -24,6 +28,8 @@ export class Company {
   mfo: string;
 
   /* holderType enum */
+  @Prop({ default: HolderType.LTD })
+  holderType: HolderType
 
   @Prop()
   directorFullName: string;
@@ -50,11 +56,14 @@ export class Company {
   email: string;
 
   /* orderType enum */
+  @Prop({ default: OrderType.END_PRODUCT })
+  orderType: HolderType
 
   @Prop()
   legalAddress: string;
 
-  /* reference addressId */
+  @Prop()
+  addresses: Record<string, any>;
 }
 
 export const CompanySchema = SchemaFactory.createForClass(Company);
