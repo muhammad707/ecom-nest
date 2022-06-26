@@ -1,7 +1,8 @@
 export default () => ({
-  port: parseInt(process.env.PORT, 10) || 5000,
+  port: parseInt(process.env.APP_PORT, 10) || 5000,
   database: {
-    host: process.env.HOST,
-    port: parseInt(process.env.PORT, 10) || 27017
+    host: process.env.MONGODB_HOST,
+    port: parseInt(process.env.MONGODB_PORT, 10) || 27017,
+    databse: process.env.DATABASE
   }
 });
