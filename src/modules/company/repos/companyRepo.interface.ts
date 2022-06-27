@@ -1,11 +1,10 @@
 import { Types } from "mongoose";
 
-import { Company } from "../interfaces";
-import { CreateCompanyDto } from "../dto/create-company.dto";
+import { CreateCompanyDto, CreateCompanyResponse } from "../dto/create-company.dto";
 
 export interface ICompanyRepo {
   // getCompanies(): Promise<Company[]>
-  save(createCompanyDto: CreateCompanyDto): Promise<Company>;
+  save(createCompanyDto: CreateCompanyDto): Promise<CreateCompanyResponse>;
   exisits(companyEmail: string): Promise<boolean>;
   // getCompanyById(id: Types.ObjectId): Promise<Company>;
   // updateCompany(companyData: Company): Promise<void>;

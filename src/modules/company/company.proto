@@ -28,7 +28,9 @@ message CreateCompanyRequest {
 }
 
 message CreateCompanyResponse {
-  bool success = 1;
+  bytes id = 1;
+  repeated string error = 2;
+  int32 status = 3;
 }
 
 // Address
