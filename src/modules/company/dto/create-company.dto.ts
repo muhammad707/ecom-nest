@@ -1,6 +1,10 @@
+import { Types } from "mongoose";
 import { HolderType, OrderType, Status } from "../enums";
 
-export interface CreateCompanyDto {
+
+
+// Company document creation
+export class CreateCompanyDto {
   status: Status;
   name: string;
   legalName: string;
@@ -23,3 +27,9 @@ export interface CreateCompanyDto {
   updatedAt: Date;
   deletedAt: Date;
 }
+export interface CreateCompanyResponse {
+  status: number;
+  error: string[];
+  id: Types.ObjectId;
+}
+

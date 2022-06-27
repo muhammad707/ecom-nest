@@ -3,13 +3,13 @@ import { ConfigModule } from '@nestjs/config';
 
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
-import { CompaniesModule } from './modules/companies/companies.module';
+import { CompanyModule } from './modules/company/company.module';
 import configuration from './config/configuration';
 
 @Module({
   imports: [ConfigModule.forRoot({
     load: [configuration]
-  }), CompaniesModule],
+  }), CompanyModule],
   controllers: [AppController],
   providers: [AppService],
 })
