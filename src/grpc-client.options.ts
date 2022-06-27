@@ -6,7 +6,7 @@ console.log(protoPath);
 export const grpcClientOptions: ClientOptions = {
   transport: Transport.GRPC,
   options: {
-    url: '0.0.0.0:5000',
+    url: '0.0.0.0:50051',
     package: 'company',
     protoPath: join(__dirname, './modules/companies/company.proto'),
   }
