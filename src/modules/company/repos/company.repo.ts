@@ -1,10 +1,10 @@
 import { Model, Types } from "mongoose";
 import { HttpStatus, Inject, Injectable } from "@nestjs/common";
 
-import { Company, getCompaniesResponse, GetCompanyResponse } from "../interfaces";
 import { COMPANY_MODEL } from "src/constants";
 import { ICompanyRepo } from "./companyRepo.interface";
-import { CreateCompanyDto, CreateCompanyResponse } from "../dto/create-company.dto";
+import { CreateCompanyDto, FindCompanyByIdDto } from "../dto";
+import { Company, getCompaniesResponse, GetCompanyResponse, CreateCompanyResponse } from "../interfaces";
 
 @Injectable()
 export class CompanyRepo implements ICompanyRepo {
@@ -19,8 +19,8 @@ export class CompanyRepo implements ICompanyRepo {
     }
   }
 
-  async getCompanyById(id: Types.ObjectId): Promise<GetCompanyResponse> {
-    let company: Company = await this.companyModel.findById(id);
+  async getCompanyById(payload: FindCompanyByIdDto): Promise<GetCompanyResponse> {
+    let company: Company = await this.companyModel.findOne(payload);
     if (!company) {
       return {
         data: null,

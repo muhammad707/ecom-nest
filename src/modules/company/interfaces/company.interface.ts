@@ -36,3 +36,9 @@ export interface GetCompanyResponse {
   error: string[];
   status: number;
 }
+
+export interface CreateCompanyResponse {
+  status: number;
+  error: string[];
+  id: Types.ObjectId;
+}
