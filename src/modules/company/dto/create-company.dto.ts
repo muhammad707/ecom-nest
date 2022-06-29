@@ -32,4 +32,3 @@ export interface CreateCompanyResponse {
   error: string[];
   id: Types.ObjectId;
 }
-
