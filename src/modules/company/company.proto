@@ -4,6 +4,8 @@ package company;
 
 service CompanyService {
   rpc CreateCompany (CreateCompanyRequest) returns (CreateCompanyResponse) {}
+  rpc GetCompanies () returns (GetCompaniesResponse) {}
+  rpc GetCompany (GetCompanyRequest) returns (GetCompanyResponse) {}
 }
 
 message CreateCompanyRequest {
@@ -67,4 +69,42 @@ enum OrderType {
   ALL = 1;
   PREORDER = 2;
   END_PRODUCT = 3;
+}
+
+message FindOneData {
+  string id = 1;
+  Status status = 2;
+  string name = 3;
+  string legalName = 4;
+  string logo = 5;
+  string description = 6;
+  string mfo = 7;
+  HolderType holderType = 8;
+  string directorFullName = 9;
+  string bankName = 10;
+  string branchName = 11;
+  string branchCode = 12;
+  string oked = 13;
+  string inn = 14;
+  string phone = 15;
+  string email = 16;
+  OrderType orderType = 17;
+  string legalAddress = 18;
+  Address address = 19;
+}
+
+message GetCompaniesResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  repeated FindOneData data = 3;
+}
+
+message GetCompanyRequest {
+  string id = 1;
+}
+
+message GetCompanyResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  FindOneData data = 3;
 }

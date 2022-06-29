@@ -31,5 +31,4 @@ export class CompanyController {
   getCompanyById(payload: FindCompanyByIdDto): Promise<GetCompanyResponse> {
     return this.companyRepo.getCompanyById(payload);
   }
-
 }
