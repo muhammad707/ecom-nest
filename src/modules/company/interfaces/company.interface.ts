@@ -24,3 +24,15 @@ export interface Company extends Document {
   updatedAt: Date;
   deletedAt: Date;
 }
+
+export interface getCompaniesResponse {
+  data: Company[],
+  error: string[],
+  status: number;
+}
+
+export interface GetCompanyResponse {
+  data: Company;
+  error: string[];
+  status: number;
+}
