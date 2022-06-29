@@ -1,4 +1,4 @@
-import { Document } from "mongoose";
+import { Document, Types } from "mongoose";
 import { HolderType, OrderType, Status } from "../enums";
 
 export interface Company extends Document {

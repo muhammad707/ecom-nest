@@ -4,7 +4,7 @@ package company;
 
 service CompanyService {
   rpc CreateCompany (CreateCompanyRequest) returns (CreateCompanyResponse) {}
-  rpc GetCompanies () returns (GetCompaniesResponse) {}
+  // rpc GetCompanies () returns (GetCompaniesResponse) {}
   rpc GetCompany (GetCompanyRequest) returns (GetCompanyResponse) {}
 }
 
