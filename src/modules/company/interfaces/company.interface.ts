@@ -27,6 +27,7 @@ export interface Company extends Document {
 
 export interface getCompaniesResponse {
   data: Company[],
+  count: number;
   error: string[],
   status: number;
 }

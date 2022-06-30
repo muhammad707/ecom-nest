@@ -2,7 +2,7 @@ import { FindCompanyByIdDto, CreateCompanyDto } from "../dto";
 import { getCompaniesResponse, GetCompanyResponse, CreateCompanyResponse } from "../interfaces";
 
 export interface ICompanyRepo {
-  getCompanies(): Promise<getCompaniesResponse>
+  getCompanies(skip, limit): Promise<getCompaniesResponse>
   getCompanyById(payload: FindCompanyByIdDto): Promise<GetCompanyResponse>;
   save(createCompanyDto: CreateCompanyDto): Promise<CreateCompanyResponse>;
   exisits(companyEmail: string): Promise<boolean>;

@@ -3,9 +3,9 @@ syntax = "proto3";
 package company;
 
 service CompanyService {
-  rpc CreateCompany (CreateCompanyRequest) returns (CreateCompanyResponse) {}
-  // rpc GetCompanies () returns (GetCompaniesResponse) {}
   rpc GetCompany (GetCompanyRequest) returns (GetCompanyResponse) {}
+  rpc GetCompanies (GetCompaniesRequest) returns (GetCompaniesResponse) {}
+  rpc CreateCompany (CreateCompanyRequest) returns (CreateCompanyResponse) {}
 }
 
 message CreateCompanyRequest {
@@ -93,10 +93,16 @@ message FindOneData {
   Address address = 19;
 }
 
+message GetCompaniesRequest {
+  int32 skip = 1;
+  int32 limit = 2;
+}
+
 message GetCompaniesResponse {
   int32 status = 1;
-  repeated string error = 2;
-  repeated FindOneData data = 3;
+  int32 count = 2;
+  repeated string error = 3;
+  repeated FindOneData data = 4;
 }
 
 message GetCompanyRequest {

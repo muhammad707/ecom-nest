@@ -11,6 +11,7 @@ import {
 import { CreateCompanyDto, } from './dto';
 import { getCompaniesResponse, GetCompanyResponse, CreateCompanyResponse } from './interfaces';
 import { FindCompanyByIdDto } from './dto';
+import { PaginationParams } from './dto/get-companies.dto';
 
 @Controller()
 export class CompanyController {
@@ -23,8 +24,8 @@ export class CompanyController {
   }
 
   @GrpcMethod(COMPANY_SERVICE_NAME, COMPANIES_GET_RPC_METHOD)
-  getCompanies(): Promise<getCompaniesResponse> {
-    return this.companyRepo.getCompanies();
+  getCompanies({ skip, limit }: PaginationParams): Promise<getCompaniesResponse> {
+    return this.companyRepo.getCompanies(skip, limit);
   }
 
   @GrpcMethod(COMPANY_SERVICE_NAME, COMPANY_GET_BYID_RPC_METHOD)

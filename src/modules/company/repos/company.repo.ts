@@ -1,18 +1,29 @@
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import { HttpStatus, Inject, Injectable } from "@nestjs/common";
 import { COMPANY_MODEL } from "src/constants";
 import { ICompanyRepo } from "./companyRepo.interface";
-import { CreateCompanyDto, FindCompanyByIdDto } from "../dto";
+import { CreateCompanyDto, FindCompanyByIdDto, PaginationParams } from "../dto";
 import { Company, getCompaniesResponse, GetCompanyResponse, CreateCompanyResponse } from "../interfaces";
 
 @Injectable()
 export class CompanyRepo implements ICompanyRepo {
   constructor(@Inject(COMPANY_MODEL) private readonly companyModel: Model<Company>) { }
 
-  async getCompanies(): Promise<getCompaniesResponse> {
-    let companies: Company[] = await this.companyModel.find();
+  async getCompanies(documentsToSkip = 0, limitOfDocuments?: number): Promise<getCompaniesResponse> {
+    const findQuery = this.companyModel
+      .find()
+      .sort({ _id: -1 })
+      .skip(documentsToSkip)
+
+    if (limitOfDocuments) {
+      findQuery.limit(limitOfDocuments);
+    }
+
+    const companies: Company[] = await findQuery;
+    const count = await this.companyModel.count();
     return {
       data: companies,
+      count: count,
       error: null,
       status: HttpStatus.OK
     }
