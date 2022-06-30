@@ -1,9 +1,11 @@
-import { Model } from "mongoose";
+import { Model, FilterQuery, UpdateQuery } from "mongoose";
 import { HttpStatus, Inject, Injectable } from "@nestjs/common";
+
 import { COMPANY_MODEL } from "src/constants";
 import { ICompanyRepo } from "./companyRepo.interface";
 import { CreateCompanyDto, FindCompanyByIdDto, PaginationParams } from "../dto";
 import { Company, getCompaniesResponse, GetCompanyResponse, CreateCompanyResponse } from "../interfaces";
+import { CompanyDocument } from "../schemas/company.schema";
 
 @Injectable()
 export class CompanyRepo implements ICompanyRepo {
@@ -53,6 +55,14 @@ export class CompanyRepo implements ICompanyRepo {
       error: null,
       status: HttpStatus.OK
     }
+  }
+
+  async updateCompany(
+    conditions: FilterQuery<CompanyDocument>,
+    fields: UpdateQuery<CompanyDocument>,
+    options: Record<string, unknown> = {}): Promise<any> {
+    const result = await this.companyModel.findOneAndUpdate(conditions, fields, { new: true, ...options });
+    return result;
   }
 
   async exisits(companyEmail: string): Promise<boolean> {

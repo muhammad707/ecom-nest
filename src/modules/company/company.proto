@@ -1,11 +1,12 @@
 syntax = "proto3";
-
+import "google/protobuf/any.proto";
 package company;
 
 service CompanyService {
   rpc GetCompany (GetCompanyRequest) returns (GetCompanyResponse) {}
   rpc GetCompanies (GetCompaniesRequest) returns (GetCompaniesResponse) {}
   rpc CreateCompany (CreateCompanyRequest) returns (CreateCompanyResponse) {}
+  rpc UpdateCompany (UpdateCompanyRequest) returns (UpdateCompanyResponse) {}
 }
 
 message CreateCompanyRequest {
@@ -113,4 +114,21 @@ message GetCompanyResponse {
   int32 status = 1;
   repeated string error = 2;
   FindOneData data = 3;
+}
+
+message UpdateCompanyRequest {
+  UpdateCompanyRequestFilter filter = 1;
+  UpdateCompanyRequestFields fields = 2;
+}
+
+message UpdateCompanyResponse {
+  google.protobuf.Any response = 1;
+}
+
+message UpdateCompanyRequestFilter {
+  string id = 1;
+}
+
+message UpdateCompanyRequestFields {
+  FindOneData fields = 1;
 }
