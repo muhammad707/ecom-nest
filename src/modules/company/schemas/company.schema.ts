@@ -7,7 +7,7 @@ import { HolderType, OrderType, Status } from "../enums";
 
 export type CompanyDocument = Company & Document;
 
-@Schema()
+@Schema({ timestamps: true })
 export class Company {
 
   /* Status enum */
