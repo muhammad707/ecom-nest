@@ -1,5 +1,6 @@
 import { join } from 'path';
 import { Transport, ClientOptions } from '@nestjs/microservices';
+
 import { protobufPackage } from './modules/owner.pb';
 
 export const grpcClientOptions: ClientOptions = {
@@ -7,6 +8,6 @@ export const grpcClientOptions: ClientOptions = {
   options: {
     url: '0.0.0.0:50051',
     package: protobufPackage,
-    protoPath: join(__dirname, 'node_modules/owner-proto/proto/owner.proto'),
+    protoPath: join('node_modules/owner-proto/proto/owner.proto'),
   }
 }

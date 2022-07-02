@@ -2,19 +2,17 @@ import { GrpcMethod } from '@nestjs/microservices';
 import { Controller, Inject } from '@nestjs/common';
 
 import {
-  COMPANY_SERVICE_NAME,
   COMPANY_UPDATE_METHOD,
   COMPANIES_GET_RPC_METHOD,
   COMPANY_CREATE_RPC_METHOD,
   COMPANY_GET_BYID_RPC_METHOD,
 } from 'src/constants';
-import { FindCompanyByIdDto } from './dto';
+import { CreateCompanyRequestDto, FindCompanyByIdDto } from './dto';
 import { CompanyRepo } from './repos/company.repo';
 import { PaginationParams } from './dto/get-companies.dto';
-import { CreateCompanyDto, UpdateCompanyDto, } from './dto';
-import { getCompaniesResponse, GetCompanyResponse, CreateCompanyResponse } from './interfaces';
 import { ICompanyRepo } from './repos/companyRepo.interface';
-import { CreateCompanyRequest } from '../owner.pb';
+import { getCompaniesResponse, GetCompanyResponse, CreateCompanyResponse } from './interfaces';
+import { CreateCompanyRequest, COMPANY_SERVICE_NAME } from '../owner.pb';
 
 @Controller()
 export class CompanyController {
@@ -22,8 +20,8 @@ export class CompanyController {
   private readonly companyRepo: ICompanyRepo;
 
   @GrpcMethod(COMPANY_SERVICE_NAME, COMPANY_CREATE_RPC_METHOD)
-  createCompany(createCompanyDto: CreateCompanyRequest): Promise<CreateCompanyResponse> {
-    return this.companyRepo.save(createCompanyDto);
+  createCompany(payload: CreateCompanyRequestDto): Promise<CreateCompanyResponse> {
+    return this.companyRepo.save(payload);
   }
 
   @GrpcMethod(COMPANY_SERVICE_NAME, COMPANIES_GET_RPC_METHOD)

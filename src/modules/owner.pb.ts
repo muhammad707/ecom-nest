@@ -45,6 +45,9 @@ export interface CompanyData {
   orderType: OrderType;
   legalAddress: string;
   address: Address | undefined;
+  createdAt: number;
+  updatedAt: number;
+  deletedAt: number;
 }
 
 /** Address */
