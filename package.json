@@ -20,9 +20,8 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "proto:install": "yarn add git+https://gitlab.com/mukhammadjon-s/owner-proto.git",
-    "proto:company": "protoc --plugin=protoc-gen-ts_proto=.\\node_modules\\.bin\\protoc-gen-ts_proto.cmd --ts_proto_out=./src/modules/company ./src/modules/company/company.proto",
-    "proto:all": "yarn proto:company",
-    "proto:test": "protoc --plugin=.\\node_modules\\.bin\\protoc-gen-ts_proto -I=.\\node_modules\\owner-proto\\proto --ts_proto_out=src/modules/company node_modules/owner-proto/proto/owner.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb"
+    "proto:owner": "protoc --plugin=.\\node_modules\\.bin\\protoc-gen-ts_proto -I=.\\node_modules\\owner-proto\\proto --ts_proto_out=src/modules node_modules/owner-proto/proto/owner.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb",
+    "proto:all": "yarn proto:owner"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.6.7",
