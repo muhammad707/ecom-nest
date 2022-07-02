@@ -14,6 +14,7 @@ import { PaginationParams } from './dto/get-companies.dto';
 import { CreateCompanyDto, UpdateCompanyDto, } from './dto';
 import { getCompaniesResponse, GetCompanyResponse, CreateCompanyResponse } from './interfaces';
 import { ICompanyRepo } from './repos/companyRepo.interface';
+import { CreateCompanyRequest } from '../owner.pb';
 
 @Controller()
 export class CompanyController {
@@ -21,7 +22,7 @@ export class CompanyController {
   private readonly companyRepo: ICompanyRepo;
 
   @GrpcMethod(COMPANY_SERVICE_NAME, COMPANY_CREATE_RPC_METHOD)
-  createCompany(createCompanyDto: CreateCompanyDto): Promise<CreateCompanyResponse> {
+  createCompany(createCompanyDto: CreateCompanyRequest): Promise<CreateCompanyResponse> {
     return this.companyRepo.save(createCompanyDto);
   }
 
@@ -36,8 +37,8 @@ export class CompanyController {
   }
 
   @GrpcMethod(COMPANY_SERVICE_NAME, COMPANY_UPDATE_METHOD)
-  updateCompany({ filter, fields, options }: UpdateCompanyDto): Promise<any> {
-    console.log(filter, fields);
+  updateCompany(payload: any): Promise<any> {
+    console.log(payload);
     return;
     // return this.companyRepo.updateCompany(filter, fields, options);
   }

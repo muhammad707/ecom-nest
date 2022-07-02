@@ -6,7 +6,7 @@ service CompanyService {
   rpc GetCompany (GetCompanyRequest) returns (GetCompanyResponse) {}
   rpc GetCompanies (GetCompaniesRequest) returns (GetCompaniesResponse) {}
   rpc CreateCompany (CreateCompanyRequest) returns (CreateCompanyResponse) {}
-  rpc UpdateCompany (UpdateCompanyRequest) returns (UpdateCompanyResponse) {}
+  rpc UpdateCompany (CreateCompanyRequest) returns (CreateCompanyResponse) {}
 }
 
 message CreateCompanyRequest {
@@ -55,25 +55,25 @@ message Address {
 
 // ENUMS
 enum Status {
-  ACTIVE = 1;
-  BLOCKED = 2;
-  PENDING = 3;
-  PAUSED = 4;
+  ACTIVE = 0;
+  BLOCKED = 1;
+  PENDING = 2;
+  PAUSED = 3;
 }
 
 enum HolderType {
-  INDIVIDUAL = 1;
-  LTD = 2;
+  INDIVIDUAL = 0;
+  LTD = 1;
 }
 
 enum OrderType {
-  ALL = 1;
-  PREORDER = 2;
-  END_PRODUCT = 3;
+  ALL = 0;
+  PREORDER = 1;
+  END_PRODUCT = 2;
 }
 
 message FindOneData {
-  string id = 1;
+  // string id = 1;
   Status status = 2;
   string name = 3;
   string legalName = 4;
@@ -117,8 +117,8 @@ message GetCompanyResponse {
 }
 
 message UpdateCompanyRequest {
-  UpdateCompanyRequestFilter filter = 1;
-  UpdateCompanyRequestFields fields = 2;
+  // UpdateCompanyRequestFilter filter = 1;
+  UpdateCompanyRequestFields fields = 1;
 }
 
 message UpdateCompanyResponse {
@@ -130,5 +130,5 @@ message UpdateCompanyRequestFilter {
 }
 
 message UpdateCompanyRequestFields {
-  FindOneData fields = 1;
+  CreateCompanyRequest fields = 1;
 }
