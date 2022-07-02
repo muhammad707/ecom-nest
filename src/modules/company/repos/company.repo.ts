@@ -4,7 +4,7 @@ import { HttpStatus, Inject, Injectable } from "@nestjs/common";
 import { COMPANY_MODEL } from "src/constants";
 import { ICompanyRepo } from "./companyRepo.interface";
 import { CompanyDocument } from "../schemas/company.schema";
-import { CreateCompanyRequestDto, FindCompanyByIdDto, PaginationParams } from "../dto";
+import { CreateCompanyRequestDto, GetCompanyByIdDto, PaginationParams } from "../dto";
 import { Company, getCompaniesResponse, GetCompanyResponse, CreateCompanyResponse } from "../interfaces";
 
 @Injectable()
@@ -31,7 +31,7 @@ export class CompanyRepo implements ICompanyRepo {
     }
   }
 
-  async getCompanyById({ id }: FindCompanyByIdDto): Promise<GetCompanyResponse> {
+  async getCompanyById({ id }: GetCompanyByIdDto): Promise<GetCompanyResponse> {
     let company: Company = await this.companyModel.findOne({ _id: id });
     if (!company) {
       return {

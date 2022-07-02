@@ -1,11 +1,11 @@
 import { FilterQuery, UpdateQuery } from "mongoose";
-import { CreateCompanyRequestDto, FindCompanyByIdDto, } from "../dto";
+import { CreateCompanyRequestDto, GetCompanyByIdDto, } from "../dto";
 import { getCompaniesResponse, GetCompanyResponse, CreateCompanyResponse } from "../interfaces";
 import { CompanyDocument } from "../schemas/company.schema";
 
 export interface ICompanyRepo {
   getCompanies(skip, limit): Promise<getCompaniesResponse>
-  getCompanyById(payload: FindCompanyByIdDto): Promise<GetCompanyResponse>;
+  getCompanyById(payload: GetCompanyByIdDto): Promise<GetCompanyResponse>;
   save(payload: CreateCompanyRequestDto): Promise<CreateCompanyResponse>;
   exisits(companyEmail: string): Promise<boolean>;
   updateCompany(

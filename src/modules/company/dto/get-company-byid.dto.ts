@@ -1,5 +1,8 @@
-import { Types } from "mongoose";
+import { IsNotEmpty, IsString } from "class-validator";
+import { GetCompanyRequest } from "src/modules/owner.pb";
 
-export interface FindCompanyByIdDto {
+export class GetCompanyByIdDto implements GetCompanyRequest {
+  @IsString()
+  @IsNotEmpty()
   id: string;
 }

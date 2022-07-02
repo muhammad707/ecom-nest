@@ -7,12 +7,12 @@ import {
   COMPANY_CREATE_RPC_METHOD,
   COMPANY_GET_BYID_RPC_METHOD,
 } from 'src/constants';
-import { CreateCompanyRequestDto, FindCompanyByIdDto } from './dto';
 import { CompanyRepo } from './repos/company.repo';
+import { COMPANY_SERVICE_NAME } from '../owner.pb';
 import { PaginationParams } from './dto/get-companies.dto';
 import { ICompanyRepo } from './repos/companyRepo.interface';
+import { CreateCompanyRequestDto, GetCompanyByIdDto } from './dto';
 import { getCompaniesResponse, GetCompanyResponse, CreateCompanyResponse } from './interfaces';
-import { CreateCompanyRequest, COMPANY_SERVICE_NAME } from '../owner.pb';
 
 @Controller()
 export class CompanyController {
@@ -30,7 +30,7 @@ export class CompanyController {
   }
 
   @GrpcMethod(COMPANY_SERVICE_NAME, COMPANY_GET_BYID_RPC_METHOD)
-  getCompanyById(payload: FindCompanyByIdDto): Promise<GetCompanyResponse> {
+  getCompanyById(payload: GetCompanyByIdDto): Promise<GetCompanyResponse> {
     return this.companyRepo.getCompanyById(payload);
   }
 
