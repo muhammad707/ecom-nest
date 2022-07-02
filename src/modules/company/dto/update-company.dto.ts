@@ -1,8 +1,15 @@
-import { FilterQuery, UpdateQuery } from "mongoose";
-import { CompanyDocument } from "../schemas/company.schema";
+import { CompanyData } from "./create-company.dto";
+import { UpdateCompanyRequest } from "src/modules/owner.pb";
 
-export class UpdateCompanyDto {
-  filter: FilterQuery<CompanyDocument>;
-  fields: UpdateQuery<CompanyDocument>;
+export class UpdateCompanyDtoRequest implements UpdateCompanyRequest {
+  filter: UpdateCompanyRequestFilterDto;
+  fields: CompanyData;
   options: Record<string, unknown>;
+}
+
+class UpdateCompanyRequestFilterDto {
+  id: string;
+}
+class UpdateCompanyRequestFieldsDto {
+  fields: CompanyData
 }

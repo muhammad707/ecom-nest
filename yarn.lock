@@ -3838,7 +3838,7 @@ os-tmpdir@~1.0.2:
 
 "owner-proto@git+https://gitlab.com/mukhammadjon-s/owner-proto.git":
   version "1.0.0"
-  resolved "git+https://gitlab.com/mukhammadjon-s/owner-proto.git#ae073004d36ebb4921ad622f198258fe0a38b2c1"
+  resolved "git+https://gitlab.com/mukhammadjon-s/owner-proto.git#425583362257cac7643c2511a3e026f7451dd925"
 
 p-limit@^2.2.0:
   version "2.3.0"

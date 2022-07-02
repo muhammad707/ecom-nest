@@ -99,30 +99,69 @@ export interface GetCompanyResponse {
   data: CompanyData | undefined;
 }
 
+export interface UpdateCompanyRequest {
+  filter: UpdateCompanyRequestFilter | undefined;
+  fields: UpdateCompanyRequest_UpdateCompanyRequestFields | undefined;
+}
+
+export interface UpdateCompanyRequest_UpdateCompanyRequestFields {
+  status: Status;
+  name: string;
+  legalName: string;
+  logo: string;
+  description: string;
+  mfo: string;
+  holderType: HolderType;
+  directorFullName: string;
+  bankName: string;
+  branchName: string;
+  branchCode: string;
+  oked: string;
+  inn: string;
+  phone: string;
+  email: string;
+  orderType: OrderType;
+  legalAddress: string;
+  address: Address | undefined;
+  createdAt: number;
+  updatedAt: number;
+  deletedAt: number;
+}
+
+export interface UpdateCompanyRequestFilter {
+  id: string;
+}
+
+export interface UpdateCompanyRequestFields {
+  fields: CompanyData | undefined;
+}
+
+export interface UpdateCompanyResponse {
+  status: number;
+  error: string[];
+}
+
 export const OWNER_PACKAGE_NAME = 'owner';
 
 /** COMPANY SERVICE */
 
-export interface CompanyServiceClient {
+export interface OwnerServiceClient {
+  getCompany(request: GetCompanyRequest): Observable<GetCompanyResponse>;
+
+  getCompanies(request: GetCompaniesRequest): Observable<GetCompaniesResponse>;
+
   createCompany(
     request: CreateCompanyRequest,
   ): Observable<CreateCompanyResponse>;
 
-  getCompany(request: GetCompanyRequest): Observable<GetCompanyResponse>;
-
-  getCompanies(request: GetCompaniesRequest): Observable<GetCompaniesResponse>;
+  updateCompany(
+    request: UpdateCompanyRequest,
+  ): Observable<UpdateCompanyResponse>;
 }
 
 /** COMPANY SERVICE */
 
-export interface CompanyServiceController {
-  createCompany(
-    request: CreateCompanyRequest,
-  ):
-    | Promise<CreateCompanyResponse>
-    | Observable<CreateCompanyResponse>
-    | CreateCompanyResponse;
-
+export interface OwnerServiceController {
   getCompany(
     request: GetCompanyRequest,
   ):
@@ -136,21 +175,36 @@ export interface CompanyServiceController {
     | Promise<GetCompaniesResponse>
     | Observable<GetCompaniesResponse>
     | GetCompaniesResponse;
+
+  createCompany(
+    request: CreateCompanyRequest,
+  ):
+    | Promise<CreateCompanyResponse>
+    | Observable<CreateCompanyResponse>
+    | CreateCompanyResponse;
+
+  updateCompany(
+    request: UpdateCompanyRequest,
+  ):
+    | Promise<UpdateCompanyResponse>
+    | Observable<UpdateCompanyResponse>
+    | UpdateCompanyResponse;
 }
 
-export function CompanyServiceControllerMethods() {
+export function OwnerServiceControllerMethods() {
   return function (constructor: Function) {
     const grpcMethods: string[] = [
-      'createCompany',
       'getCompany',
       'getCompanies',
+      'createCompany',
+      'updateCompany',
     ];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(
         constructor.prototype,
         method,
       );
-      GrpcMethod('CompanyService', method)(
+      GrpcMethod('OwnerService', method)(
         constructor.prototype[method],
         method,
         descriptor,
@@ -162,7 +216,7 @@ export function CompanyServiceControllerMethods() {
         constructor.prototype,
         method,
       );
-      GrpcStreamMethod('CompanyService', method)(
+      GrpcStreamMethod('OwnerService', method)(
         constructor.prototype[method],
         method,
         descriptor,
@@ -171,4 +225,4 @@ export function CompanyServiceControllerMethods() {
   };
 }
 
-export const COMPANY_SERVICE_NAME = 'CompanyService';
+export const OWNER_SERVICE_NAME = 'OwnerService';

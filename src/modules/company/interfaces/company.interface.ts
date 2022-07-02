@@ -25,7 +25,7 @@ export interface Company extends Document {
   deletedAt: Date;
 }
 
-export interface getCompaniesResponse {
+export interface GetCompaniesResponse {
   data: Company[],
   count: number;
   error: string[],
@@ -42,4 +42,8 @@ export interface CreateCompanyResponse {
   status: number;
   error: string[];
   id: Types.ObjectId;
+}
+
+export interface UpdateCompanyResponse {
+
 }

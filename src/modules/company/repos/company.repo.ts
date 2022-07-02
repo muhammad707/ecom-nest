@@ -4,14 +4,14 @@ import { HttpStatus, Inject, Injectable } from "@nestjs/common";
 import { COMPANY_MODEL } from "src/constants";
 import { ICompanyRepo } from "./companyRepo.interface";
 import { CompanyDocument } from "../schemas/company.schema";
-import { CreateCompanyRequestDto, GetCompanyByIdDto, PaginationParams } from "../dto";
-import { Company, getCompaniesResponse, GetCompanyResponse, CreateCompanyResponse } from "../interfaces";
+import { CreateCompanyRequestDto, GetCompanyByIdDto, PaginationParams, UpdateCompanyDtoRequest } from "../dto";
+import { Company, GetCompaniesResponse, GetCompanyResponse, CreateCompanyResponse } from "../interfaces";
 
 @Injectable()
 export class CompanyRepo implements ICompanyRepo {
   constructor(@Inject(COMPANY_MODEL) private readonly companyModel: Model<Company>) { }
 
-  async getCompanies(documentsToSkip = 0, limitOfDocuments?: number): Promise<getCompaniesResponse> {
+  async getCompanies(documentsToSkip = 0, limitOfDocuments?: number): Promise<GetCompaniesResponse> {
     const findQuery = this.companyModel
       .find()
       .sort({ _id: -1 })
@@ -57,12 +57,15 @@ export class CompanyRepo implements ICompanyRepo {
     }
   }
 
-  async updateCompany(
-    conditions: FilterQuery<CompanyDocument>,
-    fields: UpdateQuery<CompanyDocument>,
-    options: Record<string, unknown> = {}): Promise<any> {
-    const result = await this.companyModel.findOneAndUpdate(conditions, fields, { new: true, ...options });
-    return result;
+  async updateCompany({ filter, fields, options = {} }: UpdateCompanyDtoRequest): Promise<any> {
+    options = {
+      ...options,
+      new: true,
+    }
+    await this.companyModel.findOneAndUpdate(filter, fields, options);
+    return {
+      status: HttpStatus.NO_CONTENT,
+    }
   }
 
   async exisits(companyEmail: string): Promise<boolean> {
