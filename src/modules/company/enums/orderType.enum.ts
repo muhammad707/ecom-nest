@@ -1,5 +1,5 @@
 export enum OrderType {
-  ALL = 1,
-  PREORDER = 2,
-  END_PRODUCT = 3,
+  ALL = 0,
+  PREORDER = 1,
+  END_PRODUCT = 2,
 }

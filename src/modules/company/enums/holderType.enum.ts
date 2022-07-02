@@ -1,4 +1,4 @@
 export enum HolderType {
-  INDIVIDUAL = 1,
-  LTD = 2,
+  INDIVIDUAL = 0,
+  LTD = 1,
 }
