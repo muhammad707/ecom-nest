@@ -1,3 +1,4 @@
+import { DeleteCompanyResponse } from "src/modules/owner.pb";
 import { CreateCompanyRequestDto, GetCompanyByIdDto, UpdateCompanyDtoRequest, } from "../dto";
 import { GetCompanyResponse, CreateCompanyResponse, GetCompaniesResponse } from "../interfaces";
 
@@ -7,5 +8,5 @@ export interface ICompanyRepo {
   save(payload: CreateCompanyRequestDto): Promise<CreateCompanyResponse>;
   exisits(companyEmail: string): Promise<boolean>;
   updateCompany(payload: UpdateCompanyDtoRequest): Promise<void>;
-  // deleteCompany(id: Types.ObjectId): Promise<boolean>;
+  deleteCompany(id: string): Promise<DeleteCompanyResponse>;
 }

@@ -141,6 +141,14 @@ export interface UpdateCompanyResponse {
   error: string[];
 }
 
+export interface DeleteCompanyRequest {
+  id: string;
+}
+
+export interface DeleteCompanyResponse {
+  status: boolean;
+}
+
 export const OWNER_PACKAGE_NAME = 'owner';
 
 /** COMPANY SERVICE */
@@ -157,6 +165,10 @@ export interface OwnerServiceClient {
   updateCompany(
     request: UpdateCompanyRequest,
   ): Observable<UpdateCompanyResponse>;
+
+  deleteCompany(
+    request: DeleteCompanyRequest,
+  ): Observable<DeleteCompanyResponse>;
 }
 
 /** COMPANY SERVICE */
@@ -189,6 +201,13 @@ export interface OwnerServiceController {
     | Promise<UpdateCompanyResponse>
     | Observable<UpdateCompanyResponse>
     | UpdateCompanyResponse;
+
+  deleteCompany(
+    request: DeleteCompanyRequest,
+  ):
+    | Promise<DeleteCompanyResponse>
+    | Observable<DeleteCompanyResponse>
+    | DeleteCompanyResponse;
 }
 
 export function OwnerServiceControllerMethods() {
@@ -198,6 +217,7 @@ export function OwnerServiceControllerMethods() {
       'getCompanies',
       'createCompany',
       'updateCompany',
+      'deleteCompany',
     ];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(

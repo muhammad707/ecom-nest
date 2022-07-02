@@ -6,12 +6,13 @@ import {
   COMPANIES_GET_RPC_METHOD,
   COMPANY_CREATE_RPC_METHOD,
   COMPANY_GET_BYID_RPC_METHOD,
+  COMPANY_DELETE_METHOD,
 } from 'src/constants';
 import { CompanyRepo } from './repos/company.repo';
-import { OWNER_SERVICE_NAME } from '../owner.pb';
+import { DeleteCompanyResponse, OWNER_SERVICE_NAME } from '../owner.pb';
 import { PaginationParams } from './dto/get-companies.dto';
 import { ICompanyRepo } from './repos/companyRepo.interface';
-import { CreateCompanyRequestDto, GetCompanyByIdDto } from './dto';
+import { CreateCompanyRequestDto, DeleteCompanyRequestDto, GetCompanyByIdDto } from './dto';
 import { GetCompanyResponse, CreateCompanyResponse, GetCompaniesResponse } from './interfaces';
 
 @Controller()
@@ -36,7 +37,11 @@ export class CompanyController {
 
   @GrpcMethod(OWNER_SERVICE_NAME, COMPANY_UPDATE_METHOD)
   updateCompany(payload: any): Promise<any> {
-    console.log(payload);
     return this.companyRepo.updateCompany(payload);
+  }
+
+  @GrpcMethod(OWNER_SERVICE_NAME, COMPANY_DELETE_METHOD)
+  deleteCompany({ id }: DeleteCompanyRequestDto): Promise<DeleteCompanyResponse> {
+    return this.companyRepo.deleteCompany(id);
   }
 }

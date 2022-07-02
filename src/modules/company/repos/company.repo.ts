@@ -6,6 +6,7 @@ import { ICompanyRepo } from "./companyRepo.interface";
 import { CompanyDocument } from "../schemas/company.schema";
 import { CreateCompanyRequestDto, GetCompanyByIdDto, PaginationParams, UpdateCompanyDtoRequest } from "../dto";
 import { Company, GetCompaniesResponse, GetCompanyResponse, CreateCompanyResponse } from "../interfaces";
+import { DeleteCompanyResponse } from "src/modules/owner.pb";
 
 @Injectable()
 export class CompanyRepo implements ICompanyRepo {
@@ -57,7 +58,7 @@ export class CompanyRepo implements ICompanyRepo {
     }
   }
 
-  async updateCompany({ filter, fields, options = {} }: UpdateCompanyDtoRequest): Promise<any> {
+  async updateCompany({ filter, fields, options }: UpdateCompanyDtoRequest): Promise<any> {
     options = {
       ...options,
       new: true,
@@ -65,6 +66,13 @@ export class CompanyRepo implements ICompanyRepo {
     await this.companyModel.findOneAndUpdate(filter, fields, options);
     return {
       status: HttpStatus.NO_CONTENT,
+    }
+  }
+
+  async deleteCompany(id: string): Promise<DeleteCompanyResponse> {
+    const deleteResult = await this.companyModel.deleteOne({ _id: id });
+    return {
+      status: deleteResult.deletedCount === 1,
     }
   }
 
