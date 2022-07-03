@@ -1,7 +1,7 @@
 import { Document } from "mongoose";
 import { Prop, raw, Schema, SchemaFactory } from "@nestjs/mongoose";
 
-import { Address } from "./address.schema";
+import { CompanyTimeTable, Address, CompanyWarehouse, CompanyEmployee } from ".";
 import { HolderType, OrderType, Status } from "../enums";
 
 
@@ -65,7 +65,17 @@ export class Company {
   legalAddress: string;
 
   @Prop(raw(Address))
-  address: Record<string, any>;
+  address: Address;
+
+  @Prop(raw(CompanyTimeTable))
+  timeTable: CompanyTimeTable;
+
+  @Prop([raw(CompanyWarehouse)])
+  warehouses: CompanyWarehouse[];
+
+  @Prop([raw(CompanyEmployee)])
+  employees: CompanyEmployee[];
+
 }
 
 export const CompanySchema = SchemaFactory.createForClass(Company);
