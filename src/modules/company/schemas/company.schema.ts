@@ -68,7 +68,7 @@ export class Company {
   address: Address;
 
   @Prop(raw(CompanyTimeTable))
-  timeTable: CompanyTimeTable;
+  timetable: CompanyTimeTable;
 
   @Prop([raw(CompanyWarehouse)])
   warehouses: CompanyWarehouse[];

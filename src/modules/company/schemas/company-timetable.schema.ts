@@ -3,10 +3,10 @@ import { Prop, Schema } from "@nestjs/mongoose";
 @Schema()
 export class CompanyTimeTable {
   @Prop()
-  startTime: Date;
+  startTime: number;
 
   @Prop()
-  endTime: Date;
+  endTime: number;
 
   @Prop()
   day: number;
