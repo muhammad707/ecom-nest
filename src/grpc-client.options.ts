@@ -1,7 +1,7 @@
 import { join } from 'path';
 import { Transport, ClientOptions } from '@nestjs/microservices';
 
-import { protobufPackage } from './modules/owner.pb';
+import { protobufPackage } from './modules/protocol-buffer-definitions/owner.pb';
 
 export const grpcClientOptions: ClientOptions = {
   transport: Transport.GRPC,

@@ -1,9 +1,8 @@
 import { IsEmail, IsEnum, IsNotEmpty, IsNumber, IsString, ValidateNested } from "class-validator";
 
-import { Address } from "./address.dto";
 import { HolderType, OrderType, Status } from "../enums";
-import { CreateCompanyRequest } from "src/modules/owner.pb";
-
+import { Address, CompanyEmployee, CompanyWarehouse, CompanyTimeTable } from "./interfaces";
+import { CreateCompanyRequest } from "src/modules/protocol-buffer-definitions/owner.pb";
 // Company document creation
 export class CreateCompanyRequestDto implements CreateCompanyRequest {
   companyData: CompanyData;
@@ -70,6 +69,15 @@ export class CompanyData {
 
   @ValidateNested()
   public readonly address: Address;
+
+  @ValidateNested()
+  public readonly warehouses: CompanyWarehouse[]
+
+  @ValidateNested()
+  public readonly employees: CompanyEmployee[]
+
+  @ValidateNested()
+  public readonly timetable: CompanyTimeTable;
 
   @IsNumber()
   public readonly createdAt: number;

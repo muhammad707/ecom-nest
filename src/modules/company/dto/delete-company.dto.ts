@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString } from "class-validator";
-import { DeleteCompanyRequest } from "src/modules/owner.pb";
+import { DeleteCompanyRequest } from "src/modules/protocol-buffer-definitions/owner.pb";
 
 export class DeleteCompanyRequestDto implements DeleteCompanyRequest {
   @IsString()

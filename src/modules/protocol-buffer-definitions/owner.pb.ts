@@ -1,6 +1,10 @@
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
+import { Address } from './address.pb';
+import { CompanyWarehouse } from './company/warehouse.pb';
+import { CompanyEmployee } from './company/employee.pb';
+import { CompanyTimetable } from './company/timetable.pb';
 
 export const protobufPackage = 'owner';
 
@@ -45,26 +49,12 @@ export interface CompanyData {
   orderType: OrderType;
   legalAddress: string;
   address: Address | undefined;
+  warehouses: CompanyWarehouse[];
+  employees: CompanyEmployee[];
+  timetable: CompanyTimetable | undefined;
   createdAt: number;
   updatedAt: number;
   deletedAt: number;
-}
-
-/** Address */
-export interface Address {
-  latitude: string;
-  longitude: string;
-  name: string;
-  street: string;
-  city: string;
-  home: string;
-  postalCode: string;
-  apartment: string;
-  comment: string;
-  domofon: string;
-  address: string;
-  regionId: number;
-  districtId: number;
 }
 
 export interface CreateCompanyRequest {

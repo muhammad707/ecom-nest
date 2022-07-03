@@ -1,5 +1,5 @@
 import { CompanyData } from "./create-company.dto";
-import { UpdateCompanyRequest } from "src/modules/owner.pb";
+import { UpdateCompanyRequest } from "src/modules/protocol-buffer-definitions/owner.pb";
 
 export class UpdateCompanyDtoRequest implements UpdateCompanyRequest {
   filter: UpdateCompanyRequestFilterDto;

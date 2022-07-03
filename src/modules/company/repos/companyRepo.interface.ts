@@ -1,4 +1,4 @@
-import { DeleteCompanyResponse } from "src/modules/owner.pb";
+import { DeleteCompanyResponse } from "src/modules/protocol-buffer-definitions/owner.pb";
 import { CreateCompanyRequestDto, GetCompanyByIdDto, UpdateCompanyDtoRequest, } from "../dto";
 import { GetCompanyResponse, CreateCompanyResponse, GetCompaniesResponse } from "../interfaces";
 

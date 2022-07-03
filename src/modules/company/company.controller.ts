@@ -9,7 +9,7 @@ import {
   COMPANY_DELETE_METHOD,
 } from 'src/constants';
 import { CompanyRepo } from './repos/company.repo';
-import { DeleteCompanyResponse, OWNER_SERVICE_NAME } from '../owner.pb';
+import { DeleteCompanyResponse, OWNER_SERVICE_NAME } from '../protocol-buffer-definitions/owner.pb';
 import { PaginationParams } from './dto/get-companies.dto';
 import { ICompanyRepo } from './repos/companyRepo.interface';
 import { CreateCompanyRequestDto, DeleteCompanyRequestDto, GetCompanyByIdDto } from './dto';

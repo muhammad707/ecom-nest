@@ -6,7 +6,7 @@ import { ICompanyRepo } from "./companyRepo.interface";
 import { CompanyDocument } from "../schemas/company.schema";
 import { CreateCompanyRequestDto, GetCompanyByIdDto, PaginationParams, UpdateCompanyDtoRequest } from "../dto";
 import { Company, GetCompaniesResponse, GetCompanyResponse, CreateCompanyResponse } from "../interfaces";
-import { DeleteCompanyResponse } from "src/modules/owner.pb";
+import { DeleteCompanyResponse } from "src/modules/protocol-buffer-definitions/owner.pb";
 
 @Injectable()
 export class CompanyRepo implements ICompanyRepo {
