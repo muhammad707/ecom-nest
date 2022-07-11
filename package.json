@@ -19,7 +19,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "proto:install": "yarn add git+https://gitlab.com/mukhammadjon-s/owner-proto.git",
+    "proto:install": "yarn add git+https://gitlab.com/padishah/owner-proto.git",
     "proto:owner": "protoc --plugin=.\\node_modules\\.bin\\protoc-gen-ts_proto -I=.\\node_modules\\owner-proto\\proto --ts_proto_out=src/modules/protocol-buffer-definitions node_modules/owner-proto/proto/owner.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb",
     "proto:all": "yarn proto:owner"
   },
@@ -35,7 +35,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "mongoose": "^6.4.0",
-    "owner-proto": "git+https://gitlab.com/mukhammadjon-s/owner-proto.git",
+    "owner-proto": "git+https://gitlab.com/padishah/owner-proto.git",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"

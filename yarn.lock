@@ -3836,9 +3836,9 @@ os-tmpdir@~1.0.2:
   resolved "https://registry.yarnpkg.com/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
   integrity sha512-D2FR03Vir7FIu45XBY20mTb+/ZSWB00sjU9jdQXt83gDrI4Ztz5Fs7/yy74g2N5SVQY4xY1qDr4rNddwYRVX0g==
 
-"owner-proto@git+https://gitlab.com/mukhammadjon-s/owner-proto.git":
+"owner-proto@git+https://gitlab.com/padishah/owner-proto.git":
   version "1.0.0"
-  resolved "git+https://gitlab.com/mukhammadjon-s/owner-proto.git#50945a4ddc26a650a3b0a2556ce29eeeb2bbf0b8"
+  resolved "git+https://gitlab.com/padishah/owner-proto.git#68be1d83acc57a90e23373592b5ab652ad983071"
 
 p-limit@^2.2.0:
   version "2.3.0"
